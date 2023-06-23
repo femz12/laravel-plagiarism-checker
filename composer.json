@@ -1,0 +1,19 @@
+{
+    "name": "davido/pgchecker",
+    "description": "A package for integrating to copyleaks plagiarism checker easily in your laravel app",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Davido\\Pgchecker\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ayodele Olufemi David",
+            "email": "doayodele@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
