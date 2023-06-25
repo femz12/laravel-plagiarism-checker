@@ -1,11 +1,11 @@
 {
     "name": "davido/pgchecker",
-    "description": "A package for integrating to copyleaks plagiarism checker easily in your laravel app",
+    "description": "A package for integrating copyleaks plagiarism checker easily in your laravel app",
     "type": "project",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Davido\\Pgchecker\\": "src/"
+            "DavidO\\PGChecker\\": "src/"
         }
     },
     "authors": [
@@ -15,5 +15,19 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "extra": {
+      "laravel": {
+          "providers": [
+              "DavidO\\PGChecker\\PGCheckerServiceProvider"
+          ],
+          "aliases": {
+              "PGChecker": "DavidO\\PGChecker\\PGChecker"
+          }
+      }
+  },
+    "require": {
+        "php": "^8.0.2",
+        "laravel/framework": "^8|^9|^10",
+        "laravel/pint": "dev-main"
+    }
 }
