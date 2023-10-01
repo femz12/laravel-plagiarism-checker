@@ -3,6 +3,7 @@
 namespace DavidO\PGChecker\Services;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\URL;
 
 class Copyleaks
 {
@@ -54,7 +55,7 @@ class Copyleaks
     public function submitFileForScan($scanId, $fileData, $extension = 'txt', $action = 0, $includeHtml = true)
     {
         $token = (new CacheData)->saveToken($scanId, uniqid());
-        $webhook = $this->webhookBase ? "{$this->webhookBase}/api/plagiarism/webhook/{STATUS}/{$token}" : url("/api/plagiarism/webhook/{STATUS}/{$token}");
+        $webhook = $this->webhookBase ? "{$this->webhookBase}/api/plagiarism/webhook/{STATUS}/{$token}" : URL::to("/api/plagiarism/webhook/{STATUS}/{$token}");
         $response = $this->client->put("scans/submit/file/{$scanId}", [
             'headers' => [
                 'Content-Type' => 'application/json',
