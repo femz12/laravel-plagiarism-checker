@@ -1,6 +1,6 @@
 {
     "name": "davido/pgchecker",
-    "description": "A package for integrating copyleaks plagiarism checker easily in your laravel app",
+    "description": "A package for integrating copyleaks plagiarism checker easily in your laravel application",
     "type": "project",
     "license": "MIT",
     "autoload": {
