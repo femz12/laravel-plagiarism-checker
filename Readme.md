@@ -49,16 +49,24 @@ php artisan vendor:publish --provider="DavidO\PGChecker\PGCheckerServiceProvider
 
 ## Usage
 
-You can use the following code to scan text and and you get a json data as a response
+You can use the following code to scan text or a file and you get a json data as a response
  
 ```
 PGChecker::scanText("A long text to scan for plagiarism");
 ```
 
-You can use also submit text for scan only without getting the result immediately.
+```
+PGChecker::scanFile("File binary data", 'pdf');
+```
+
+You can use also submit text or a file for scan only without getting the result immediately.
  
 ```
-PGChecker::submitText("A long text to scan for plagiarism");
+$canId = PGChecker::submitText("A long text to scan for plagiarism");
+```
+
+```
+$canId = PGChecker::submitFile("File binary data", 'pdf');
 ```
 
 this will return a unique scan id that can be used to retrieve the result later using the following code.

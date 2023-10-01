@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('api/plagiarism/webhook/{status}', function (Request $request, $status) {
-    return (new PGChecker)->saveResult($request, $status);
+Route::post('api/plagiarism/webhook/{status}/{token}', function (Request $request, $status, $token) {
+    return (new PGChecker)->saveResult($request, $status, $token);
 });

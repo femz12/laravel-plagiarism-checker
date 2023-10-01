@@ -51,9 +51,10 @@ class Copyleaks
         return json_decode($response->getBody(), true);
     }
 
-    public function submitFileForScan($scanId, $fileData, $action = 0, $includeHtml = true)
+    public function submitFileForScan($scanId, $fileData, $extension = 'txt', $action = 0, $includeHtml = true)
     {
-        $webhook = $this->webhookBase ? "{$this->webhookBase}/api/plagiarism/webhook/{STATUS}" : url('/api/plagiarism/webhook/{STATUS}');
+        $token = (new CacheData)->saveToken($scanId, uniqid());
+        $webhook = $this->webhookBase ? "{$this->webhookBase}/api/plagiarism/webhook/{STATUS}/{$token}" : url("/api/plagiarism/webhook/{STATUS}/{$token}");
         $response = $this->client->put("scans/submit/file/{$scanId}", [
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -61,7 +62,7 @@ class Copyleaks
             ],
             'json' => [
                 'base64' => $fileData,
-                'filename' => "{$scanId}.txt",
+                'filename' => "{$scanId}.{$extension}",
                 'properties' => [
                     'action' => $action,
                     'includeHtml' => $includeHtml,
@@ -76,10 +77,10 @@ class Copyleaks
         return json_decode($response->getBody(), true);
     }
 
-    public function submitScan($content)
+    public function submitScan($content, $extension = 'txt')
     {
         $fileData = base64_encode($content);
 
-        return $this->submitFileForScan($this->scanId, $fileData);
+        return $this->submitFileForScan($this->scanId, $fileData, $extension);
     }
 }
