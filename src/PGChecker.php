@@ -35,7 +35,7 @@ class PGChecker
         return $scanId;
     }
 
-    public static function submitFile(string $content, $scanId = null, $extension = 'pdf')
+    public static function submitFile(string $content, $extension = 'pdf', $scanId = null)
     {
         $scanId = $scanId ?? uniqid();
         $copyleaksService = new Copyleaks($scanId);
